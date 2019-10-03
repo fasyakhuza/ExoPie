@@ -696,11 +696,11 @@ def runbbdm(txtfile):
 	    		continue
 		else:
 			jet1 = pass_jet_index_cleaned[a]
-			jet1_P4 = TLorentzVector(ak4px_[a],ak4py_[a],ak4pz_[a],ak4e_[a])
+			jet1_P4 = TLorentzVector(ak4px_[jet1],ak4py_[jet1],ak4pz_[jet1],ak4e_[jet1])
 			for b in range(n):
 				if b > a:
 					jet2 = pass_jet_index_cleaned[b]
-					jet2_P4 = TLorentzVector(ak4px_[b],ak4py_[b],ak4pz_[b],ak4e_[b])
+					jet2_P4 = TLorentzVector(ak4px_[jet2],ak4py_[jet2],ak4pz_[jet2],ak4e_[jet2])
 					jetsInvMass = (jet1_P4+jet2_P4).M()
 					st_THINjetCanMass.push_back(jetsInvMass)
 				else:
