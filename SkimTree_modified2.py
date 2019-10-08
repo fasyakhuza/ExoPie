@@ -690,7 +690,7 @@ def runbbdm(txtfile):
                 st_THINjetCorrUnc.push_back(ak4JEC_[ithinjet])
             
             	#try to sum 2 ak4 jet
-	    	if len(pass_jet_index_cleaned) == 1:
+	    	if len(pass_jet_index_cleaned) < 2:
 	    		continue
 		else:
 			for jthinjet in pass_jet_index_cleaned:
@@ -700,6 +700,8 @@ def runbbdm(txtfile):
 				else:
 					continue
                         ################
+	    for i in range(len(st_THINjetCanMass)):
+                 print(st_THINjetCanMass[i])
             
             
 	    if debug_:print 'njets: ',len(pass_jet_index_cleaned)
