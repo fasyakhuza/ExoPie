@@ -694,7 +694,7 @@ def runbbdm(txtfile):
 	    		continue
 		else:
 			for jthinjet in pass_jet_index_cleaned:
-				if jthinjet > ithinjet:
+				if (jthinjet > ithinjet) and (ak4deepcsv_[ithinjet] > 0.4941) and (ak4deepcsv_[jthinjet] > 0.4941):
 					jetsInvMass = InvMass(ak4px_[ithinjet],ak4py_[ithinjet],ak4pz_[ithinjet],ak4e_[ithinjet],ak4px_[jthinjet],ak4py_[jthinjet],ak4pz_[jthinjet],ak4e_[jthinjet])
 					st_THINjetCanMass.push_back(jetsInvMass)
 				else:
