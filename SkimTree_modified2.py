@@ -701,7 +701,7 @@ def runbbdm(txtfile):
 					continue
                         ################
 	    for i in range(len(st_THINjetCanMass)):
-                 print(st_THINjetCanMass[i])
+                 print "mass in event number=",ieve,", mass=",st_THINjetCanMass[i]
             
             
 	    if debug_:print 'njets: ',len(pass_jet_index_cleaned)
