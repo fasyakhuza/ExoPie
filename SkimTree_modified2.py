@@ -711,21 +711,7 @@ def runbbdm(txtfile):
                                 	j2index.push_back(jet2)
 				else:
 					continue
-                        ################
-	    
-	    
-            for i in range(len(st_higgsMass)):
-           	 print "mass in event number=",ieve,"len=",len(st_higgsMass),", mass=",st_higgsMass[i]
-	    
-	   
-	    ''' 
-	    for j in range(len(j1index)):
-		 print "event number=",ieve,"len=",len(j1index),"j1index=",j1index[j]
-	    '''
-	    ''' 
-	    for k in range(len(j2index)):
-		 print "event number=",ieve,"len=",len(j2index),"j2index=",j2index[k]
-	    ''' 
+                        ###############
 	
 	    if debug_:print 'njets: ',len(pass_jet_index_cleaned)
 
