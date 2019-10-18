@@ -203,8 +203,8 @@ def runbbdm(txtfile):
 
     #branches added
     outTree.Branch( 'st_higgsMass', st_higgsMass)
-    outTree.Branch( 'j1index',j1index)#,'j1index/L')
-    outTree.Branch( 'j2index',j2index)#,'j2index/L')
+    outTree.Branch( 'j1index',j1index)
+    outTree.Branch( 'j2index',j2index)
     
     ##################
 
