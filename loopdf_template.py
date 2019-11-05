@@ -90,5 +90,5 @@ for df in read_root(filename, 'outTree', columns=allvariables, chunksize=125000)
 
         ievent = ievent +1
 
-    outfile.Write()
-    outfile.Close() 
+outfile.Write()
+outfile.Close() 
