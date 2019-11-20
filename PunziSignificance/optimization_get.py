@@ -89,7 +89,7 @@ NdataM2 = 0
 
 for i in range(len(bkgname)):
     openbkg = TFile(path+bkgname[i])
-    h_total_mcweight = openf.Get("h_total_mcweight")
+    h_total_mcweight = openbkg.Get("h_total_mcweight")
     preEventsbkg = h_total_mcweight.Integral()
     treebkg = openbkg.Get("monoHbb_SR_boosted")
     eventsbkg = treebkg.GetEntries()
