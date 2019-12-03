@@ -9,7 +9,7 @@ c1.SetLeftMargin(0.15)
 #c1.Divide(1,9,0.01,0.01)
 
 file = TFile(filename)
-nhist = 1
+nhist = 1 #8
 
 for i in range(nhist):
     #c1.cd(1)
