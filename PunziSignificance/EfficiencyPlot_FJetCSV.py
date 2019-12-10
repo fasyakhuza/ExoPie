@@ -25,7 +25,8 @@ signalname = ["MH3_300","MH3_400","MH3_500","MH3_600","MH3_1000","MH3_1200","MH3
 nhist = 8
 #color = [419, 861, 803, 400, 407, 393, 920, 616]
 MH3 = [300, 400, 500, 600, 1000, 1200, 1400, 1600]
-outfile = TFile("singlevaluesignal3.root", "recreate")
+
+outfile = TFile("singlevaluesignal.root", "recreate")
 
 for i in range(nhist):
     preselect_name = "h_preselect_"+str(i)
@@ -70,7 +71,7 @@ leg = TLegend(0.55,0.15,0.7,0.3)
 leg.SetBorderSize(0)
 leg.SetTextSize(0.027)
 nhist = 8
-openf = TFile("singlevaluesignal3.root", "read")
+openf = TFile("singlevaluesignal.root", "read")
 
 mg = TMultiGraph("mg","")
 mg.SetTitle("Signal Efficiency; MH3 (GeV); Efficiency")
