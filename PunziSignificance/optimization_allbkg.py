@@ -22,9 +22,9 @@ h_FJetMassL = TH1F("h_FJetMassL","FJetMass Loose",40,0,1000)
 h_FJetMassM1 = TH1F("h_FJetMassM1","FJetMass Medium1",40,0,1000)
 h_FJetMassM2 = TH1F("h_FJetMassM2","FJetMass Medium2",40,0,1000)
 
-countL = 0
-countM1 = 0
-countM2 = 0
+#countL = 0
+#countM1 = 0
+#countM2 = 0
 
 for i in range(len(fname)):
     openf = TFile(path+fname[i], "read")
@@ -39,21 +39,21 @@ for i in range(len(fname)):
         FJetCSV = getattr(treef, 'FJetCSV')
         dPhi = getattr(treef, 'min_dPhi')
         if (FJetCSV > 0.7) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
-            countL = countL + 1
+            #countL = countL + 1
             h_FJetMassL.Fill(FJetMass)
             nFJetMassL = h_FJetMassL.Integral()
         if (FJetCSV > 0.86) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
-            countM1 = countM1 + 1
+            #countM1 = countM1 + 1
             h_FJetMassM1.Fill(FJetMass)
             nFJetMassM1 = h_FJetMassM1.Integral()
         if (FJetCSV > 0.89) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
-            countM2 = countM2 + 1
+            #countM2 = countM2 + 1
             h_FJetMassM2.Fill(FJetMass)
             nFJetMassM2 = h_FJetMassM2.Integral()
 
-    FJetMassL.append(countL)
-    FJetMassM1.append(countM1)
-    FJetMassM2.append(countM2)
+    #FJetMassL.append(countL)
+    #FJetMassM1.append(countM1)
+    #FJetMassM2.append(countM2)
 
     effL.append(nFJetMassL/preEvents)
     effM1.append(nFJetMassM1/preEvents)
@@ -73,9 +73,9 @@ for i in range(len(fname)):
     print "nFJetMassM2", nFJetMassM2
     '''
 
-    countL = 0
-    countM1 = 0
-    countM2 = 0
+    #countL = 0
+    #countM1 = 0
+    #countM2 = 0
 
 
 print "###############################################"
