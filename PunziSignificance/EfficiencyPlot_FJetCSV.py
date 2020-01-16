@@ -5,7 +5,7 @@ from ROOT import TFile, TTree, TH1F, TMath, TCanvas, TLegend, TAxis, TGraph, TMu
 import array as arr
 import numpy as np
 
-'''
+
 #produce root
 
 path = "/afs/cern.ch/work/d/dekumar/public/monoH/Analyzer/CMSSW_10_3_0/src/ExoPieProducer/ExoPieAnalyzer/OutputForRaman/"
@@ -26,7 +26,7 @@ nhist = 8
 #color = [419, 861, 803, 400, 407, 393, 920, 616]
 MH3 = [300, 400, 500, 600, 1000, 1200, 1400, 1600]
 
-outfile = TFile("singlevaluesignal.root", "recreate")
+outfile = TFile("singlevaluesignal3.root", "recreate")
 
 for i in range(nhist):
     preselect_name = "h_preselect_"+str(i)
@@ -49,16 +49,17 @@ for i in range(len(fname)):
         FJetMass = getattr(treef, 'FJetMass')
         FJetCSV = getattr(treef, 'FJetCSV')
         dPhi = getattr(treef, 'min_dPhi')
-        if (FJetCSV > 0.7) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
+        nJets = getattr(treef, 'nJets')
+        if (FJetCSV > 0.7) and (FJetMass > 100.0) and (FJetMass < 150.0) and (dPhi > 0.4) and (nJets <= 2.0):
             loo[i].Fill(MH3[i])
-        if (FJetCSV > 0.86) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
+        if (FJetCSV > 0.86) and (FJetMass > 100.0) and (FJetMass < 150.0) and (dPhi > 0.4) and (nJets <= 2.0):
             med1[i].Fill(MH3[i])
-        if (FJetCSV > 0.89) and (FJetMass > 100.0) and (FJetMass < 150.0) and (abs(dPhi) > 0.4):
+        if (FJetCSV > 0.89) and (FJetMass > 100.0) and (FJetMass < 150.0) and (dPhi > 0.4) and (nJets <= 2.0):
             med2[i].Fill(MH3[i])
 
 outfile.Write()
 outfile.Close()
-'''
+
 
 #plot efficiency
 
@@ -71,7 +72,7 @@ leg = TLegend(0.55,0.15,0.7,0.3)
 leg.SetBorderSize(0)
 leg.SetTextSize(0.027)
 nhist = 8
-openf = TFile("singlevaluesignal.root", "read")
+openf = TFile("singlevaluesignal3.root", "read")
 
 mg = TMultiGraph("mg","")
 mg.SetTitle("Signal Efficiency; MH3 (GeV); Efficiency")
@@ -89,25 +90,25 @@ for i in range(nhist):
     gPad.Modified()
     #effL_name = "effL"+str(i)
     effL = TGraphAsymmErrors(loo,preselect,"cl=0.683 b(1,1) mode")
-    effL.SetTitle("Loose (FJetCSV > 0.7)")
-    effL.SetMarkerColor(2)
+    effL.SetTitle("Loose")
+    effL.SetMarkerColor(1)
     effL.SetMarkerStyle(21)
     #effL.SetMarkerSize(1.5)
-    effL.SetLineColor(2)
+    effL.SetLineColor(1)
     effL.SetLineWidth(4)
 
     #effM1_name = "effM1"+str(i)
     effM1 = TGraphAsymmErrors(med1,preselect,"cl=0.683 b(1,1) mode")
-    effM1.SetTitle("Medium1 (FJetCSV > 0.86)")
-    effM1.SetMarkerColor(3)
+    effM1.SetTitle("Medium 1")
+    effM1.SetMarkerColor(2)
     effM1.SetMarkerStyle(20)
     #effM1.SetMarkerSize(1.5)
-    effM1.SetLineColor(3)
+    effM1.SetLineColor(2)
     effM1.SetLineWidth(4)
 
     #effM2_name = "effM2"+str(i)
     effM2 = TGraphAsymmErrors(med2,preselect,"cl=0.683 b(1,1) mode")
-    effM2.SetTitle("Medium2 (FJetCSV > 0.89)")
+    effM2.SetTitle("Medium 2")
     effM2.SetMarkerColor(4)
     effM2.SetMarkerStyle(22)
     #effM2.SetMarkerSize(1.5)
@@ -120,12 +121,12 @@ for i in range(nhist):
 
 mg.Draw("AP")
 
-leg.AddEntry(effL, "Loose (FJetCSV > 0.7)")
-leg.AddEntry(effM1, "Medium1 (FJetCSV > 0.86)")
-leg.AddEntry(effM2, "Medium2 (FJetCSV > 0.89)")
+leg.AddEntry(effL, "Loose")
+leg.AddEntry(effM1, "Medium 1")
+leg.AddEntry(effM2, "Medium 2")
 leg.Draw()
 
 c1.cd()
 c1.Update()
-c1.SaveAs("sigeffFJetCSV_new.pdf")
+c1.SaveAs("sigeffFJetCSV_new_add.pdf")
 
