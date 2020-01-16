@@ -26,7 +26,7 @@ h_FJetMassBkgL_fjet_final = TH1F("h_FJetMassBkgL_fjet_final","Background FJetMas
 h_FJetMassBkgM1_fjet_final = TH1F("h_FJetMassBkgM1_fjet_final","Background FJetMass Medium1",30,0,300)
 h_FJetMassBkgM2_fjet_final = TH1F("h_FJetMassBkgM2_fjet_final","Background FJetMass Medium2",30,0,300)
 
-L = 150000.0 #1/pb
+L = 41000.0 #1/pb
 
 for i in range(len(bkgname)):
     openbkg = TFile(path+bkgname[i])
@@ -39,16 +39,17 @@ for i in range(len(bkgname)):
         treebkg.GetEntry(j)
         FJetMassBkg = getattr(treebkg, 'FJetMass')
         FJetCSVBkg = getattr(treebkg, 'FJetCSV')
-        dPhi = getattr(treebkg, 'min_dPhi')
-        if (FJetCSVBkg > 0.7) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (abs(dPhi) > 0.4):
+        dPhiBkg = getattr(treebkg, 'min_dPhi')
+        nJetsBkg = getattr(treebkg, 'nJets')
+        if (FJetCSVBkg > 0.7) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (dPhiBkg > 0.4) and (nJetsBkg <= 2.0):
             #FJetMassBkgL.append(FJetMassBkg)
             h_FJetMassBkgL.Fill(0.7)
             h_FJetMassBkgL_fjet.Fill(FJetMassBkg)
-        if (FJetCSVBkg > 0.86) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (abs(dPhi) > 0.4):
+        if (FJetCSVBkg > 0.86) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (dPhiBkg > 0.4) and (nJetsBkg <= 2.0):
             #FJetMassBkgM1.append(FJetMassBkg)
             h_FJetMassBkgM1.Fill(0.86)
             h_FJetMassBkgM1_fjet.Fill(FJetMassBkg)
-        if (FJetCSVBkg > 0.89) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (abs(dPhi) > 0.4):
+        if (FJetCSVBkg > 0.89) and (FJetMassBkg > 100.0) and (FJetMassBkg < 150.0) and (dPhiBkg > 0.4) and (nJetsBkg <= 2.0):
             #FJetMassBkgM2.append(FJetMassBkg)
             h_FJetMassBkgM2.Fill(0.89)
             h_FJetMassBkgM2_fjet.Fill(FJetMassBkg)
@@ -153,14 +154,14 @@ h_FJetMassBkgL_final.Draw("e")
 h_FJetMassBkgM1_final.Draw("esame")
 h_FJetMassBkgM2_final.Draw("esame")
 
-leg.AddEntry(h_FJetMassBkgL_final, "Loose (FJetCSV > 0.7)")
-leg.AddEntry(h_FJetMassBkgM1_final, "Medium1 (FJetCSV > 0.86)")
-leg.AddEntry(h_FJetMassBkgM2_final, "Medium2 (FJetCSV > 0.89)")
+leg.AddEntry(h_FJetMassBkgL_final, "Loose")
+leg.AddEntry(h_FJetMassBkgM1_final, "Medium1")
+leg.AddEntry(h_FJetMassBkgM2_final, "Medium2")
 leg.Draw()
 
 c1.cd()
 c1.Update()
-c1.SaveAs("Nbkg_err_new.pdf")
+c1.SaveAs("Nbkg_err_new_add.pdf")
 
 #Draw Nbkg in function of Fat Jet Mass
 
@@ -198,11 +199,11 @@ h_FJetMassBkgL_fjet_final.Draw("e")
 h_FJetMassBkgM1_fjet_final.Draw("esame")
 h_FJetMassBkgM2_fjet_final.Draw("esame")
 
-leg2.AddEntry(h_FJetMassBkgL_fjet_final, "Loose (FJetCSV > 0.7)")
-leg2.AddEntry(h_FJetMassBkgM1_fjet_final, "Medium1 (FJetCSV > 0.86)")
-leg2.AddEntry(h_FJetMassBkgM2_fjet_final, "Medium2 (FJetCSV > 0.89)")
+leg2.AddEntry(h_FJetMassBkgL_fjet_final, "Loose")
+leg2.AddEntry(h_FJetMassBkgM1_fjet_final, "Medium 1")
+leg2.AddEntry(h_FJetMassBkgM2_fjet_final, "Medium 2")
 leg2.Draw()
 
 c2.cd()
 c2.Update()
-c2.SaveAs("Nbkg_FJetMass.pdf")
+c2.SaveAs("Nbkg_FJetMass_add.pdf")
