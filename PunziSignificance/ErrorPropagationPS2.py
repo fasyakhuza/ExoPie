@@ -32,7 +32,7 @@ for i in range(nfile):
 
     #gPad.Modified()
     effL = TGraphAsymmErrors(loo,preselect,"cl=0.683 b(1,1) mode")
-    effL.SetTitle("Loose (FJetCSV > 0.7)")
+    effL.SetTitle("Loose")
     binL = effL.GetN()
     for j in range(binL):
         effL.GetPoint(j, xL, yL)
@@ -44,7 +44,7 @@ for i in range(nfile):
     #print "errL_"+str(name[i]), errL
 
     effM1 = TGraphAsymmErrors(med1,preselect,"cl=0.683 b(1,1) mode")
-    effM1.SetTitle("Medium1 (FJetCSV > 0.86)")
+    effM1.SetTitle("Medium 1")
     binM1 = effM1.GetN()
     for j in range(binM1):
         effM1.GetPoint(j, xM1, yM1)
@@ -56,7 +56,7 @@ for i in range(nfile):
     #print "errM1_"+str(name[i]), errM1
 
     effM2 = TGraphAsymmErrors(med2,preselect,"cl=0.683 b(1,1) mode")
-    effM2.SetTitle("Medium2 (FJetCSV > 0.89)")
+    effM2.SetTitle("Medium 2")
     binM2 = effM2.GetN()
     for j in range(binM2):
         effM2.GetPoint(j, xM2, yM2)
@@ -77,17 +77,17 @@ print "####################################"
     
 #Punzi Significance errors
 
-effL_value = [0.016216216216216217, 0.04846938775510204, 0.0724450194049159, 0.18310428455941793, 0.42162455854387393, 0.4382972183802059, 0.42174677608440797, 0.2693032015065913]
-effM1_value = [0.010810810810810811, 0.03571428571428571, 0.054333764553686936, 0.13217461600646727, 0.33170334148329256, 0.3520823728292608, 0.34232121922626024, 0.2184557438794727]
-effM2_value = [0.005405405405405406, 0.017857142857142856, 0.037516170763260026, 0.07679870654810024, 0.2330888345558272, 0.2619486706623636, 0.2543962485345838, 0.17702448210922786]
+effL_value = [0.016216216216216217, 0.03826530612244898, 0.05304010349288486, 0.15481002425222312, 0.3579190437381146, 0.3712924542800061, 0.35199296600234464, 0.2222222222222222]
+effM1_value = [0.010810810810810811, 0.030612244897959183, 0.04139715394566624, 0.11196443007275667, 0.2798152675903287, 0.2979099431381589, 0.28516998827667056, 0.18267419962335216]
+effM2_value = [0.005405405405405406, 0.015306122448979591, 0.027166882276843468, 0.06588520614389652, 0.19654985058408042, 0.22252958352543414, 0.21336459554513482, 0.1431261770244821]
 
-NdataLfinal = 7041.22753906
-NdataM1final = 2516.92724609
-NdataM2final = 1264.01574707
+NdataLfinal = 1476.63879395
+NdataM1final = 525.63659668
+NdataM2final = 267.509887695
 
-errLbkg = 100.33962118877793
-errM1bkg = 60.62274327217933
-errM2bkg = 46.11500290405923
+errLbkg = 21.836138315888665
+errM1bkg = 12.45983719415238
+errM2bkg = 10.025671552656473
 
 errPS_L = arr.array('d')
 errPS_M1 = arr.array('d')
@@ -108,46 +108,53 @@ print "errPS_L", errPS_L
 print "errPS_M1", errPS_M1
 print "errPS_M2", errPS_M2
 
+leg = TLegend(0.65,0.2,0.89,0.39)
+leg.SetBorderSize(0)
+leg.SetTextSize(0.035)
+
 c1 = TCanvas("c1","c1",900,700) #width-height
 c1.SetLeftMargin(0.15)
 
 zero1 = np.zeros(8)
 MH3name = arr.array('d', [300, 400, 500, 600, 1000, 1200, 1400, 1600])
 
-PS_L_list = arr.array('d', [0.00019097669596337556, 0.0005708189509449533, 0.0008531774774387971, 0.0021564001623835473, 0.004965428682876427, 0.0051617808679983715, 0.004966868026171359, 0.003171555864225424])
-PS_M1_list = arr.array('d', [0.00021127660837527183, 0.0006979673669540229, 0.0010618494483026276, 0.0025830999239414044, 0.006482507020218456, 0.006880776188007786, 0.0066900131210036245, 0.004269299449843064])
-PS_M2_list = arr.array('d', [0.00014787856812675484, 0.0004885274125616008, 0.0010263499586028975, 0.0021010233102891807, 0.006376735973583209, 0.007166269952947582, 0.006959654299470777, 0.004842953483473195])
+PS_L_list = arr.array('d', [0.0004112969599897861, 0.0009705349183432452, 0.001345272721656976, 0.00392649502830454, 0.009078012567736165, 0.009417206558938311, 0.008927707606030736, 0.0056362916739341054])
+PS_M1_list = arr.array('d', [0.00045182964994290115, 0.0012794155903995414, 0.0017301626957710058, 0.0046794685552392825, 0.011694667182371611, 0.012450920442342712, 0.011918463677897409, 0.007634729819421243])
+PS_M2_list = arr.array('d', [0.00031144825327401876, 0.0008819070437095939, 0.0015652994359244023, 0.003796168988471316, 0.011324794914451026, 0.012821693266796396, 0.012293625659714199, 0.008246633598931645])
 
 gPad.Modified()
 gr1 = TGraphErrors(nfile, MH3name, PS_L_list, zero1, errPS_L)
-gr1.SetTitle("Loose (FJetCSV > 0.7)")
+gr1.SetTitle("Loose")
 gr1.GetYaxis().SetNdivisions(505)
 gr1.GetYaxis().SetLabelOffset(1.4)
 gr1.GetXaxis().SetTitleOffset(4.0)
-gr1.SetLineColor(2)
+gr1.SetLineColor(1)
 gr1.SetLineWidth(5)
 gr1.SetMarkerStyle(20)
+gr1.SetMarkerColor(1)
 
 gr2 = TGraphErrors(nfile, MH3name, PS_M1_list, zero1, errPS_M1)
-gr2.SetTitle("Medium1 (FJetCSV > 0.86)")
+gr2.SetTitle("Medium 1")
 gr2.GetYaxis().SetNdivisions(505)
 gr2.GetYaxis().SetLabelOffset(1.4)
 gr2.GetXaxis().SetTitleOffset(4.0)
-gr2.SetLineColor(3)
+gr2.SetLineColor(2)
 gr2.SetLineWidth(5)
 gr2.SetMarkerStyle(21)
+gr2.SetMarkerColor(2)
 
 gr3 = TGraphErrors(nfile, MH3name, PS_M2_list, zero1, errPS_M2)
-gr3.SetTitle("Medium2 (FJetCSV > 0.89)")
+gr3.SetTitle("Medium 2")
 gr3.GetYaxis().SetNdivisions(505)
 gr3.GetYaxis().SetLabelOffset(1.4)
 gr3.GetXaxis().SetTitleOffset(4.0)
 gr3.SetLineColor(4)
 gr3.SetLineWidth(5)
 gr3.SetMarkerStyle(22)
+gr3.SetMarkerColor(4)
 
 mg = TMultiGraph("mg","")
-mg.SetTitle("All Background Processes; MH3 (GeV); Punzi Significance")
+mg.SetTitle("Punzi Significance; MH3 (GeV); Punzi Significance")
 mg.GetYaxis().SetNdivisions(505)
 mg.GetYaxis().SetLabelOffset(1.4)
 mg.GetXaxis().SetTitleOffset(4.0)
@@ -155,8 +162,11 @@ mg.Add(gr1, "ALP")
 mg.Add(gr2, "ALP")
 mg.Add(gr3, "ALP")
 mg.Draw("ALP")
-c1.BuildLegend()
+leg.AddEntry(gr1, "Loose")
+leg.AddEntry(gr2, "Medium 1")
+leg.AddEntry(gr3, "Medium 2")
+leg.Draw()
 
 c1.cd()
 c1.Update()
-c1.SaveAs("PS_all_new2.pdf")
+c1.SaveAs("PS_all_new2_add.pdf")
