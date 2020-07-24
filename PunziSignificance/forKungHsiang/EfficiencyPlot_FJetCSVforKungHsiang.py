@@ -16,7 +16,7 @@ fname = ["EXO-ggToXdXdHToBB_sinp_0p35_tanb_1p0_mXd_10_MH3_300_MH4_150_MH2_300_MH
 preselect = []
 med1 = []
 
-signalname = ["MH3_300","MH3_400","MH3_500","MH3_600","MH3_1000","MH3_1200","MH3_1400","MH3_1600"]
+signalname = ["MH3_300","MH3_400","MH3_600","MH3_1000","MH3_1200","MH3_1400","MH3_1600"]
 nhist = len(fname)
 MH3 = [300, 400, 600, 1000, 1200, 1400, 1600]
 
