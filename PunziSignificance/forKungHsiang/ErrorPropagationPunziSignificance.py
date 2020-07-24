@@ -65,10 +65,10 @@ for i in range(40):
 filename = "singlevaluesignal3.root"
 file = TFile(filename, "read")
 
-nfile = 8
+nfile = 7
 nbin = 17
 
-name = ["300", "400", "500", "600", "1000", "1200", "1400", "1600"]
+name = ["300", "400", "600", "1000", "1200", "1400", "1600"]
 
 err_sigeff_M1 = []
 
