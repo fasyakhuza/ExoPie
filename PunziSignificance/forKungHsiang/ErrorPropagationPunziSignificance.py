@@ -54,8 +54,8 @@ for i in range(40):
         Nbkg_err.append(NbkgM1_err)
 
 
-print "Normalized number of total background events", NbkgM1final
-print "Nbkg_err", Nbkg_err
+#print "Normalized number of total background events", NbkgM1final
+#print "Nbkg_err", Nbkg_err
 
 
 
@@ -93,11 +93,11 @@ for i in range(nfile):
             err_sigeff_M1.append(errM1)
     #print "errM1_"+str(name[i]), errM1
 
-
+'''
 print "####################################"
 print "err_sigeff_M1", err_sigeff_M1
 print "####################################"
-
+'''
 
     
 #Punzi Significance errors
