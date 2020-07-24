@@ -5,6 +5,7 @@ use EfficiencyPlot_FJetCSVforKungHsiang.py for producing it
 
 * Change the line 11 for the signal input file directory path
 * Change the line 13 for the signal file name
+* Change L21 >> Remove "500" at that line
 * when you run this macro, you will get that root file and the signal efficiency value
 
 #### Get the punzi significance uncertainty
